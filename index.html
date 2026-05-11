@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gilb Gilbert Jr — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0e11;
+    --bg2: #14161b;
+    --bg3: #1c1f27;
+    --border: rgba(255,255,255,0.07);
+    --border-accent: rgba(0,210,150,0.3);
+    --text: #e8eaed;
+    --muted: #8b9099;
+    --accent: #00d296;
+    --accent2: #4a9eff;
+    --accent3: #ff6b6b;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,210,150,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 10%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,158,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 0.25rem;
+  }
+
+  .role {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .contact-bar a, .contact-bar span {
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .contact-bar a:hover { color: var(--accent); }
+  .contact-bar .dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  /* ── SECTION ── */
+  section { margin-top: 3rem; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    background: var(--bg2);
+    gap: 0;
+  }
+  .skill-row:first-child { border-radius: 10px 10px 0 0; }
+  .skill-row:last-child { border-radius: 0 0 10px 10px; }
+  .skill-cat {
+    background: var(--bg3);
+    padding: 0.7rem 1rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+  }
+  .skill-vals {
+    padding: 0.7rem 1rem;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    border-left: 1px solid var(--border);
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .exp-header {
+    margin-bottom: 0.6rem;
+  }
+  .exp-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .exp-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .exp-meta .company { color: var(--accent2); }
+  .exp-meta .period { color: var(--muted); }
+  .exp-bullets {
+    list-style: none;
+    margin-top: 0.75rem;
+  }
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: #b0b5be;
+    padding: 3px 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── CERTS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+  }
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.125rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .cert-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .cert-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .cert-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .edu-degree {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .edu-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    margin-bottom: 0.75rem;
+  }
+  .edu-courses {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .edu-courses strong { color: var(--text); font-weight: 500; }
+
+  /* ── ADDITIONAL ── */
+  .extras-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+  .extra-chip {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 13px;
+  }
+  .extra-chip .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .extra-chip .value { color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer span { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .skill-row { grid-template-columns: 1fr; }
+    .skill-cat { border-bottom: 1px solid var(--border); }
+    h1 { font-size: 2rem; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  header .header-inner > * {
+    animation: fadeUp 0.55s ease both;
+  }
+  header .header-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  header .header-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  header .header-inner > *:nth-child(3) { animation-delay: 0.22s; }
+  header .header-inner > *:nth-child(4) { animation-delay: 0.3s; }
+
+  section {
+    animation: fadeUp 0.6s ease both;
+  }
+  section:nth-of-type(1) { animation-delay: 0.35s; }
+  section:nth-of-type(2) { animation-delay: 0.45s; }
+  section:nth-of-type(3) { animation-delay: 0.55s; }
+  section:nth-of-type(4) { animation-delay: 0.6s; }
+  section:nth-of-type(5) { animation-delay: 0.65s; }
+  section:nth-of-type(6) { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="tag">// resume</div>
+    <h1>Gilb Gilbert Jr</h1>
+    <p class="role">Software Engineer &nbsp;·&nbsp; Embedded Systems &nbsp;·&nbsp; Avionics</p>
+    <div class="contact-bar">
+      <a href="mailto:ggilbertjr@live.com">
+        <span class="dot"></span>ggilbertjr@live.com
+      </a>
+      <span>
+        <span class="dot"></span>Lenexa, KS
+      </span>
+      <a href="https://linkedin.com/in/gilbgilbertjr" target="_blank" rel="noopener">
+        <span class="dot"></span>linkedin.com/in/gilbgilbertjr
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="section-label">00 &mdash; Profile</div>
+    <div class="summary">
+      Recent Software Engineering graduate (B.S., WGU, 2026) with <strong style="color:#fff; font-weight:500;">12+ years</strong> of applied technical experience in embedded systems diagnostics and hardware-software integration at Collins Aerospace. Proficient in C#, JavaScript, Python, C++, and Java, with hands-on coursework in front-end development, mobile applications, data management, UI/UX design, and software security. Holds AWS Cloud Practitioner, ITIL 4 Foundation, and CompTIA Project+ certifications. Bilingual in English and Spanish.
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">01 &mdash; Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-vals">
+          <span class="pill">C#</span><span class="pill">C++</span><span class="pill">Java</span>
+          <span class="pill">JavaScript</span><span class="pill">Python</span>
+          <span class="pill">Visual Basic</span><span class="pill">Assembly</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Web &amp; UI</div>
+        <div class="skill-vals">
+          <span class="pill">Angular</span><span class="pill">HTML5</span><span class="pill">CSS</span>
+          <span class="pill">XAML</span><span class="pill">UI/UX Design</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Mobile</div>
+        <div class="skill-vals">
+          <span class="pill">.NET MAUI</span><span class="pill">C# Mobile Dev</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Databases</div>
+        <div class="skill-vals">
+          <span class="pill">SQLite</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Cloud &amp; DevOps</div>
+        <div class="skill-vals">
+          <span class="pill">AWS</span><span class="pill">Git</span>
+          <span class="pill">GitHub</span><span class="pill">GitLab</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Methodologies</div>
+        <div class="skill-vals">
+          <span class="pill">Agile</span><span class="pill">ITIL 4</span>
+          <span class="pill">QA &amp; Testing</span><span class="pill">Project Mgmt</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Embedded/HW</div>
+        <div class="skill-vals">
+          <span class="pill">RS232/485</span><span class="pill">Oscilloscope</span>
+          <span class="pill">MPLAB IDE</span><span class="pill">Firmware Debug</span><span class="pill">Schematics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">02 &mdash; Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Lead Repair Technician &amp; Embedded Systems Analyst</div>
+        <div class="exp-meta">
+          <span class="company">Collins Aerospace</span>
+          <span class="period">Sep 2013 – Present · Lenexa, KS</span>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Troubleshoot and repair embedded firmware-driven avionics assemblies (LED lighting control panels, power supply inverters) down to component level using MPLAB IDE, schematics, and serial communication tools (RS232/485, PuTTY).</li>
+        <li>Leverage software diagnostics and test fixtures to recertify customer-returned products, reducing return-to-service cycle time and supporting FAA compliance.</li>
+        <li>Utilize serial communication protocols and oscilloscope/curve tracer analysis to isolate firmware and hardware defects in complex embedded systems.</li>
+        <li>Served as subject-matter expert and lead for a team of ~20 technicians, supporting the supervisor with product knowledge, training, and escalated troubleshooting.</li>
+        <li>Daily system use involving ODM, JDE, Macola ERP, and Office 365, demonstrating proficiency in business software integration.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Software Implementation Specialist</div>
+        <div class="exp-meta">
+          <span class="company">TechTeam Global</span>
+          <span class="period">May 2004 – Jul 2005 · Nationwide</span>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Delivered enterprise software training to hotel management and staff across the U.S. on the Micros-Fidelio OPERA Property Management System (Oracle/Java-based), accelerating adoption of digital workflows.</li>
+        <li>Led classroom-to-live-environment transitions, coordinating software go-live events and providing post-deployment user support.</li>
+        <li>Worked directly with Java, Oracle databases, SQL, and Windows Server in a production deployment context.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Quality Control Technician</div>
+        <div class="exp-meta">
+          <span class="company">Sensitron Semiconductor</span>
+          <span class="period">Jan 2011 – Oct 2012 · Bay Shore, NY</span>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Operated SONOSCAN acoustical microscope for non-destructive inspection of semiconductor components.</li>
+        <li>Digitized paper-based floor reports (ESD, furnace, particle count) into structured digital logs, improving data traceability and compliance workflows.</li>
+        <li>Maintained clean-room and chemical lab environments in strict compliance with ESD and quality standards.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">03 &mdash; Education</div>
+
+    <div class="edu-item">
+      <div class="edu-degree">Bachelor of Science, Software Engineering</div>
+      <div class="edu-meta">Western Governors University &nbsp;·&nbsp; Sep 2021 – Mar 2026 &nbsp;·&nbsp; Degree Awarded March 25, 2026 &nbsp;·&nbsp; 123 credits</div>
+      <div class="edu-courses">
+        <strong>Relevant Coursework:</strong> Software I &amp; II (C#), Advanced C#, JavaScript Programming, Front-End Web Development, Mobile App Development (.NET MAUI), Software Engineering, Data Structures &amp; Algorithms, Advanced Data Management (PostgreSQL), UI/UX Design, Software Design &amp; QA, Software Security &amp; Testing, Cloud Foundations (AWS), Network &amp; Security Foundations, Version Control (Git)
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-degree">Associate-Level Coursework, Computer Science</div>
+      <div class="edu-meta">Suffolk County Community College &nbsp;·&nbsp; 12 transfer credits accepted</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <div class="section-label">04 &mdash; Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-name">AWS Certified Cloud Practitioner</div>
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-date">Jul 2023 · exp. Jul 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">ITIL 4 Foundation — IT Service Management</div>
+        <div class="cert-issuer">AXELOS</div>
+        <div class="cert-date">Oct 2023 · exp. Oct 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">CompTIA Project+</div>
+        <div class="cert-issuer">CompTIA</div>
+        <div class="cert-date">Aug 2023</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">CompTIA Network+</div>
+        <div class="cert-issuer">CompTIA</div>
+        <div class="cert-date">Aug 2010</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">FAA Repairman Certification</div>
+        <div class="cert-issuer">Federal Aviation Administration</div>
+        <div class="cert-date">Feb 2020 – Present</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL -->
+  <section>
+    <div class="section-label">05 &mdash; Additional</div>
+    <div class="extras-row">
+      <div class="extra-chip">
+        <span class="label">Languages</span>
+        <span class="value">English · Spanish (Native) · French · Hebrew</span>
+      </div>
+      <div class="extra-chip">
+        <span class="label">Volunteer</span>
+        <span class="value">South Country Ambulance · EMT-BLS/CC · Top 5 Responder '15–'17</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span>gilb gilbert jr</span> &nbsp;·&nbsp; software engineer &nbsp;·&nbsp; lenexa, ks
+</footer>
+
+</body>
+</html>
